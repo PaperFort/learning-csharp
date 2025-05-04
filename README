@@ -1,5 +1,10 @@
 # CSharpLearning
 
+# learning-console-app  
+**⚠️ This is a learning project.**  
+- C#の基礎を学ぶためのサンプル  
+- まだ最適化やエラーハンドリングは未実装  
+
 このリポジトリは、DockerとMakefileを使ってC#の学習プロジェクトをテーマごとに効率的に管理・実行するためのテンプレートです。
 
 ## 📁 ディレクトリ構成
