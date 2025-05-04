@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0
+
+WORKDIR /app
+
+# プロジェクトファイルをコピー
+COPY MyApp/ ./MyApp/
+
+# 作業ディレクトリを移動
+WORKDIR /app/MyApp
+
+# アプリをビルド
+RUN dotnet build
+
+# アプリを実行
+CMD ["dotnet", "run"]
