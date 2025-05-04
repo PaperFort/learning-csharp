@@ -1,0 +1,110 @@
+# CSharpLearning
+
+このリポジトリは、DockerとMakefileを使ってC#の学習プロジェクトをテーマごとに効率的に管理・実行するためのテンプレートです。
+
+## 📁 ディレクトリ構成
+
+```
+CSharpLearning/
+├── Makefile
+├── Dockerfile.template
+├── .gitignore
+├── HelloWorld/        # 学習テーマ1: Hello World
+│   ├── Program.cs
+│   ├── helloworld.csproj
+│   └── Dockerfile
+├── Variables/         # 学習テーマ2: 変数と演算
+│   ├── Program.cs
+│   ├── variables.csproj
+│   └── Dockerfile
+└──  ...               # その他のテーマプロジェクト
+```
+
+* **Makefile**: プロジェクトの作成、ビルド、実行、削除を一元管理
+* **Dockerfile.template**: 各テーマプロジェクトにコピーして使うDockerfileのひな形
+* **.gitignore**: バイナリや一時ファイルを除外する設定
+
+## ⚙️ 前提条件
+
+* Docker Desktopがインストールされていること
+* `make` コマンドが使えるシェル環境（Linux/Mac/Git Bash/WSL）
+* Gitによるバージョン管理を行う場合は、リポジトリを初期化していること
+
+## 📋 Makefileの主なターゲット
+
+```bash
+make help                       # コマンド一覧を表示
+make new PROJECT=<name>         # 新規C#コンソールプロジェクトを作成
+make run PROJECT=<name>         # 指定プロジェクトをビルド＆実行
+make build PROJECT=<name>       # 指定プロジェクトをビルドのみ
+make clean PROJECT=<name>       # 指定プロジェクトのDockerイメージを削除
+make delete PROJECT=<name>      # プロジェクトフォルダ＋イメージを削除（Unix系）
+make delete-win PROJECT=<name>  # 上記のWindows版
+```
+
+* `<name>` は全て**小文字**で指定してください。大文字が含まれるとエラーになります。
+
+## 🐳 Dockerfile.template
+
+すべてのテーマプロジェクトで共通に使えるDockerfileのテンプレートです。`Makefile`の`new`ターゲットで自動的に各プロジェクトにコピーされます。
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/sdk:8.0
+
+WORKDIR /app
+COPY . .
+RUN dotnet build
+CMD ["dotnet", "run"]
+```
+
+## 🚀 使用例
+
+1. リポジトリをクローン／初期化
+
+   ```bash
+   git clone <repo-url>
+   cd CSharpLearning
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin <your-github-url>
+   git branch -M main
+   git push -u origin main
+   ```
+
+2. 新規プロジェクトの作成
+
+   ```bash
+   make new PROJECT=helloworld
+   ```
+
+3. プロジェクトのビルド＆実行
+
+   ```bash
+   make run PROJECT=helloworld
+   ```
+
+4. プロジェクトの削除（Unix系）
+
+   ```bash
+   make delete PROJECT=helloworld
+   ```
+
+## 📖 学習の流れ
+
+1. `HelloWorld`プロジェクトでC#の基礎構文を確認
+2. `Variables`プロジェクトで変数・演算を学習
+3. `IfStatement`プロジェクトで条件分岐を学習
+4. `Loops`プロジェクトで繰り返しを学習
+5. `Functions`プロジェクトでメソッドを学習
+6. `ClassPractice`プロジェクトでクラス設計を学習
+7. `OOPIntro`プロジェクトでオブジェクト指向入門を学習
+
+## 🔧 カスタマイズ
+
+* 新しいテーマを追加する場合は、`make new PROJECT=<theme>`で自動作成可能
+* `Makefile`や`Dockerfile.template`を編集して、任意にターゲットや設定を追加できます
+
+---
+
+© 2025 CSharpLearning
