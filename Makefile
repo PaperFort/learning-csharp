@@ -66,4 +66,4 @@ delete-win: check ## フォルダ＆イメージ削除（Windows）
 		exit 1; \
 	fi
 	docker rmi -f $(IMAGE_NAME) || true
-	rmdir /s /q $(PROJECT_DIR)
+	rm -rf $(PROJECT_DIR)
